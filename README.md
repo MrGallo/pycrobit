@@ -55,11 +55,21 @@ from pycrobit import Microbit
 microbit = Microbit()
 microbit.connect(port="COM3")
 
-while True:
-    x, y, z = microbit.accelerometer.get_values()
-    print(x, y, z)
+try:
+    while True:
+        x, y, z = microbit.accelerometer.get_values()
+        print(x, y, z)
+except KeyboardInterrupt:
+    microbit.disconnect()
+```
 
-microbit.disconect()
+```python
+from pycrobit import connect_microbit
+
+with connect_microbit("COM3") as microbit:
+    while not microbit.button_b.is_pressed():
+        x, y, z = microbit.accelerometer.get_values()
+        print(x, y, z)
 ```
 
 ## Currently Implemented Local API
