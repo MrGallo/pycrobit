@@ -2,7 +2,7 @@
 
 ## Usage:
 
-## Flashed onto Microbit
+### Flashed onto Microbit
 ```python
 from microbit import *
 
@@ -48,7 +48,7 @@ while True:
     sleep(10)
 ```
 
-## Local Python Script
+### Local Python Script
 ```python
 from pycrobit import Microbit
 
