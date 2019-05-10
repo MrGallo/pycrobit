@@ -26,7 +26,6 @@ def setup():
 
 def update(delta_time):
     global microbit, player_x, player_y
-    # 0 - WIDTH
 
     # Get microbit data
     accelerometer_x = microbit.accelerometer.get_x()
