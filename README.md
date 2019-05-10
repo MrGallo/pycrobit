@@ -1,8 +1,9 @@
 # pycrobit
+A python library used to communicate with a microbit over a serial connection.
 
 ## Usage:
 
-### Flashed onto Microbit
+### Flash to Microbit
 ```python
 from microbit import *
 
@@ -55,12 +56,11 @@ from pycrobit import Microbit
 microbit = Microbit()
 microbit.connect(port="COM3")
 
-try:
-    while True:
-        x, y, z = microbit.accelerometer.get_values()
-        print(x, y, z)
-except KeyboardInterrupt:
-    microbit.disconnect()
+while not microbit.button_b.is_pressed():
+    x, y, z = microbit.accelerometer.get_values()
+    print(x, y, z)
+    
+microbit.disconnect()
 ```
 
 ```python
