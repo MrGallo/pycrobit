@@ -90,3 +90,17 @@ Button B
 - `microbit.button_b.is_pressed()`
 - `microbit.button_b.was_pressed()`
 - `microbit.button_b.presses()`
+
+
+## Checking available COM ports
+```python
+import serial.tools.list_ports
+print([comport.device for comport in serial.tools.list_ports.comports()])
+```
+
+## Set permissions in linux
+For our computers at school. Check for the appropriate port above.
+```sh
+$ sudo usermod -a -G dialout USERNAME
+$ sudo chmod 666 /dev/ttyACM0
+```
