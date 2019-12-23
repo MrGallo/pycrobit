@@ -2,14 +2,10 @@ import json
 
 from collections import namedtuple
 
-from typing import Dict
+from typing import Dict, NamedTuple
 
 
 class JSONStringCorruptError(Exception):
-    pass
-
-
-def main():
     pass
 
 
@@ -20,7 +16,7 @@ def string_to_dict(string: str) -> Dict:
         raise JSONStringCorruptError(f"Cannot decode string: {string}")
 
 
-def dict_to_object(data_dict: Dict):
+def dict_to_object(data_dict: Dict) -> NamedTuple:
     """Converts dict to an object"""
     try:
         Data = namedtuple("Data", " ".join(data_dict.keys()))
@@ -30,7 +26,7 @@ def dict_to_object(data_dict: Dict):
     return data
 
 
-def string_to_object(data_string: str) -> namedtuple:
+def string_to_object(data_string: str) -> NamedTuple:
     return dict_to_object(string_to_dict(data_string))
 
 
@@ -42,5 +38,16 @@ def map_value(value: float,
     return min_b + (value - (min_a))/(max_a - (min_a)) * (max_b - min_b)
 
 
-if __name__ == "__main__":
-    main()
+# Functions to be flashed to the Microbit
+
+def dict_to_string(data):
+    """Takes a dictionary and converts it to a string to send
+    over serial connection with Micro:Bit
+    Args:
+        data: Dict
+    Returns:
+        str: JSON string of the data.
+    """
+    return (str(data).replace("'", '"')
+                     .replace(": False", ": false")
+                     .replace(": True", ": true"))

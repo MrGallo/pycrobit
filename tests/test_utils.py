@@ -1,4 +1,7 @@
+from itertools import count
+
 import pytest
+
 from pycrobit.utils import *
 
 
@@ -33,3 +36,16 @@ def test_map_value():
     assert map_value(0, -1, 1, 50, 60) == 55
     assert map_value(10, -20, 20, 0, 100) == 75
     assert map_value(0, -20, 20, -5, 5) == 0
+
+
+def test_dict_to_string():
+    keys = list("abcd")
+    data = dict(zip(keys, count(5)))
+    assert dict_to_string(data) == '{"a": 5, "b": 6, "c": 7, "d": 8}'
+    
+    # can encode Python bool to JSON bool
+    data = {}
+    data['one'] = False
+    assert dict_to_string(data) == '{"one": false}'
+    data['one'] = True
+    assert dict_to_string(data) == '{"one": true}'

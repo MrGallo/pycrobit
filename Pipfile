@@ -4,13 +4,19 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pep8 = "*"
+pycrobit-mrgallo = {editable = true,path = "."}
 pytest = "*"
-
-[packages]
+mypy = "*"
+twine = "*"
+setuptools = "*"
+wheel = "*"
+pycodestyle = "*"
+flake8 = "*"
 uflash = "*"
-pyserial = "*"
 arcade = "*"
 
+[packages]
+pyserial = "*"
+
 [requires]
-python_version = "3.7"
+python_version = "3.8"
